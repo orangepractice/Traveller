@@ -1,0 +1,133 @@
+<div class="panel panel-default">
+	<div class="panel-heading">
+		あなたの素敵な部屋を素敵な旅人へ
+	</div>
+	<div class="panel-body">
+		<div class="container">
+			
+			<%= form_for @room, :html => { multipart: true } do |f| %>
+
+				<div class="row">
+					<div class="col-md-4 select">
+						<div class="form-group">
+							<label>住宅タイプ</label>
+							<%= f.select :home_type, [["アパート","Apartment"], ["一軒家","House"], ["B & B","Bed & Breakfast"]], id: "home_type", prompt: "Select...", class: "form-control" %>
+						</div>
+					</div>
+
+					<div class="col-md-4 select">
+						<div class="form-group">
+							<label>部屋タイプ</label>
+							<%= f.select :room_type, [["全て","Entire"], ["個室","Private"], ["シェアルーム","Shared"]],prompt: "Select...", class: "form-control" %>
+						</div>
+					</div>
+
+					<div class="col-md-4 select">
+						<div class="form-group">
+							<label>定員</label>
+							<%= f.select :accommodate, [["1",1], ["2",2], ["3",3], ["4",4], ["5",5], ["6+",6]], prompt: "Select...", class: "form-control" %>
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-4 select">
+						<div class="form-group">
+							<label>寝室&ベッド数</label>
+							<%= f.select :bed_room, [["1",1], ["2",2], ["3",3], ["4+",4]], prompt: "Select...", class: "form-control" %>
+						</div>
+					</div>
+
+					<div class="col-md-4 select">
+						<div class="form-group">
+							<label>バスルーム</label>
+							<%= f.select :bath_room, [["1",1], ["2",2], ["3",3], ["4+",4]], prompt: "Select...", class: "form-control" %>
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="form-group">
+						<label>Listing name</label>
+						<%= f.text_field :listing_name, placeholder: "Be clear and descriptive", class: "form-control" %>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="form-group">
+						<label>概要&詳細</label>
+						<%= f.text_area :summary, rows: 5, placeholder: "家の特徴を教えてください", class: "form-control" %>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="form-group">
+						<label>市</label>
+						<%= f.text_field :address, placeholder: "例) 港区", class: "form-control" %>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-4">
+					<label>アメニティ・設備</label>
+						<div class="form-group">
+							<%= f.check_box :is_tv %> テレビ
+						</div>
+						<div class="form-group">
+							<%= f.check_box :is_kitchen %> キッチン
+						</div>
+						<div class="form-group">
+							<%= f.check_box :is_internet %> インターネット
+						</div>
+					</div>
+
+					<div class="col-md-4">
+						<div class="form-group">
+							<%= f.check_box :is_heating %> 暖房
+						</div>
+						<div class="form-group">
+							<%= f.check_box :is_air %> 空調
+						</div>
+					</div>	
+				</div>	
+
+				<div class="row">
+					<div class="col-md-4">
+						<div class="form-group">
+							<label>宿泊料金</label>
+							<div class="input-group">
+							<%= f.text_field :price, placeholder: "10,000円", class: "form-control" %>
+								<div class="input-group-addon">JPY</div>
+							</div>	
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-4">
+						<div class="form-group">							
+							<span class="btn btn-default btn-file">
+							    <i class="fa fa-cloud-upload fa-lg"></i> 写真を追加 
+							    <%= file_field_tag "images[]", type: :file, multiple: true %>
+							</span>
+						</div>		
+					</div>
+				</div>
+
+				<div id="photos"><%= render 'photos/list' %></div>
+
+				<div class="row">
+					<div class="form-group">
+						<%= f.check_box :active %> 確認
+					</div>
+				</div>
+
+				<div class="actions">
+					<%= f.submit "保存", class: "btn btn-primary" %>
+				</div>
+
+			<% end %>
+
+		</div>
+	</div>
+</div>
